@@ -8,21 +8,25 @@ namespace UltimateTicTacToeLib
 {
     public class Tile
     {
-        private Labels label { get; set; }
+        public Labels Label { get; private set; }
+        public (int, int) Position { get; set; }
         
-        public Tile()
+        public Tile(int x, int y)
         {
-            label = Labels.None;
+            this.Label = Labels.None;
+            this.Position = (x, y);
         }
 
-        public void ChangeLabel(Labels l)
+        public bool Set(Labels Label)
         {
-            this.label = l;
-        }
+            // tile occupied?
+            if (this.Label == Labels.None)
+            {
+                this.Label = Label;
+                return true;
+            }
 
-        public Labels GetLabel()
-        {
-            return this.label;
+            return false;
         }
     }
 }
